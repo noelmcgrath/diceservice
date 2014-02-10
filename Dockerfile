@@ -1,14 +1,13 @@
 # Build a deployable dice-service container
-docker-version 0.4.2
-from	ubuntu:12.04
+FROM	ubuntu:12.04
 maintainer	Noel Mc Grath
 # Install dependencies
-run 	echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt/sources.list
-run	apt-get update
-run	apt-get install -y -q curl
-run	apt-get install -y -q git
-run	apt-get install -y -q python
-run	apt-get install -y -q python-pip
-run git clone https://github.com/noelmcgrath/diceservice && cd dice-service && pip install -r requirements.txt
-cmd cd /dice-service && gunicorn --bind 0.0.0.0:8000 --workers=2 roll-service:app
+RUN 	echo 'deb http://archive.ubuntu.com/ubuntu precise main universe' > /etc/apt/sources.list
+RUN	apt-get update
+RUN	apt-get install -y -q curl
+RUN	apt-get install -y -q git
+RUN	apt-get install -y -q python
+RUN	apt-get install -y -q python-pip
+RUN git clone https://github.com/noelmcgrath/diceservice && cd diceservice && pip install -r requirements.txt
+cmd cd /diceservice && gunicorn --bind 0.0.0.0:8000 --workers=2 roll-service:app
 expose 8000
