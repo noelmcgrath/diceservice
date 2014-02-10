@@ -1,0 +1,53 @@
+docker images
+
+# dockerfile
+cat Dockerfile
+
+# Build the docker file that is in the same directory
+docker build -t diceTest .
+
+docker inspect diceTest
+
+# run
+docker run -d -p 8000:8000 diceTest
+or
+docker run -t -i -p 8000:8000 diceTest
+
+# see what containers are running
+docker ps
+
+
+# browser
+http://localhost:8000/
+or curl -X POST -d'roll=3d6' http://localhost:8000/
+
+
+=============
+# Pushing images
+# http://docs.docker.io/en/latest/use/workingwithrepository/
+
+# docker ps to  get container id
+sudo docker login
+sudo docker commit 27a09dcc1143 noel/test
+sudo docker push noel/test
+
+
+
+
+
+
+============
+# Remove an image
+docker rmi b003b066202e
+
+
+
+
+docker run -d -name test -p 8000:8000 noel/test bash
+docker run -t -i -name test1-p 8000:8000 noel/test bash
+
+
+
+sudo docker run -t -i -p 80:80 -p 8125:8125/udp -p 8126:8126 nmcg/g1 bash
+docker run -t -i -p 8000:8000 diceTest bash
+docker run -d -p 8000:8000 diceTest
